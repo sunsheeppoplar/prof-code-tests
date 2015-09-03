@@ -14,9 +14,8 @@ function onClickList(event) {
 	console.log(event.target.innerHTML);
 };
 
-
-// 3. adder
-// Write a function adder(n) that returns a function fn(i) that returns the sum n + i. Note: n and i are integers, only. Example:
-// var addTwo = adder(2);
-// console.log(addTwo(3));
-// // 5
+function adder(n) {
+	return function fn(i) {
+		return n + i;
+	};
+};
