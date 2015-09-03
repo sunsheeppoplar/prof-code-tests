@@ -10,15 +10,11 @@ function fizzBuzz(n) {
 	};
 };
 	
-// 2. onClickList
-// Given the following HTML and Javascript:
-// <ul id="list">
-//   <li>One</li>
-//   <li>Two</li>
-// </ul>
-// var list = document.getElementById('list');
-// list.addEventListener('click', onClickList);
-// Implement the function onClickList, that handles the click event, which returns the inner text of the <li>. The method signature is: onClickList(event).
+function onClickList(event) {
+	console.log(event.target.innerHTML);
+};
+
+
 // 3. adder
 // Write a function adder(n) that returns a function fn(i) that returns the sum n + i. Note: n and i are integers, only. Example:
 // var addTwo = adder(2);
