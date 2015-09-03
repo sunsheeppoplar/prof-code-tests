@@ -10,8 +10,6 @@ function fizzBuzz(n) {
 	};
 };
 
-var list = document.getElementById('list');
-list.addEventListener('click', onClickList);
 function onClickList(event) {
 	return event.target.innerHTML;
 };
