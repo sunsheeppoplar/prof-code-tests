@@ -9,9 +9,11 @@ function fizzBuzz(n) {
 		return n.toString();
 	};
 };
-	
+
+var list = document.getElementById('list');
+list.addEventListener('click', onClickList);
 function onClickList(event) {
-	console.log(event.target.innerHTML);
+	return event.target.innerHTML;
 };
 
 function adder(n) {
