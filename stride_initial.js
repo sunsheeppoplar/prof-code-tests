@@ -7,8 +7,8 @@ function fizzBuzz(n) {
 		return 'buzz';
 	} else {
 		return n.toString();
-	}
-}
+	};
+};
 	
 // 2. onClickList
 // Given the following HTML and Javascript:
