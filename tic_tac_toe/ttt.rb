@@ -4,10 +4,8 @@ class Game
 		@board = Board.new
 	end
 
-	def play_game
+	def setup_game
 		get_info
-		puts @p1.marker
-		puts @p2.marker
 	end
 
 	class Board
@@ -45,4 +43,4 @@ end
 
 
 g = Game.new
-g.play_game
+g.setup_game
