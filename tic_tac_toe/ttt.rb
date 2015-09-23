@@ -1,5 +1,15 @@
 class Game
 
+	def initialize
+		@board = Board.new
+	end
+
+	def play_game
+		get_info
+		puts @p1.marker
+		puts @p2.marker
+	end
+
 	class Board
 		attr_accessor :layout
 		def initialize
@@ -16,9 +26,23 @@ class Game
 		end
 	end
 
-	def get_info
+	class Computer < Player
 	end
+
+	def get_info
+		puts "Hi, welcome to a simple terminal Tic-Tac-Toe game. Plase choose whether you'd like to be 'x' or 'o,' please."
+		@noughts_or_crosses = gets.chomp.downcase
+		# prohibit non "x" or "o" marker ?
+		@p1 = Player.new("#{@noughts_or_crosses}", "THANKSNILES", "hum")
+		if @p1.marker == "x" ? @p2 = Player.new("o", "botbot", "comp") : @p2 = Player.new("x", "botbot", "comp")
+		puts "Great, thanks for choosing #{@noughts_or_crosses}."
+		end
+		
+	end
+
+
 end
 
 
-b = Board.new
+g = Game.new
+g.play_game
