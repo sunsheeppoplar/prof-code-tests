@@ -71,7 +71,9 @@ class Game
 
 			puts prompt
 
-			while move = gets.chomp.split(", ") do
+			while move = gets.chomp.split(",") do
+				move.each {|coord| coord.gsub!(/\s+/, "")}
+				
 				x_coord = move[0].to_i 
 				y_coord = move[1].to_i
 				
