@@ -1,11 +1,18 @@
 class Game
 
+
 	def initialize
 		@board = Board.new
 	end
 
 	def setup_game
 		get_info
+		play_game
+	end
+
+	def play_game
+		puts "#{@board.layout}"
+		make_move(@p1)
 	end
 
 	class Board
@@ -34,8 +41,20 @@ class Game
 		@p1 = Player.new("#{@noughts_or_crosses}", "THANKSNILES", "hum")
 		if @p1.marker == "x" ? @p2 = Player.new("o", "botbot", "comp") : @p2 = Player.new("x", "botbot", "comp")
 		puts "Great, thanks for choosing #{@noughts_or_crosses}."
+		end		
+	end
+
+	def make_move(player)
+		if player.type == "hum" 
+			puts "Choose an x and y coordinate, please." 
+			move = gets.chomp.split(", ") 
+			#what if user has improper input?
+			x_coord = move[0].to_i 
+			y_coord = move[1].to_i
+			@board.layout[x_coord][y_coord] = player.marker 
+		else
+			puts "comp bro"
 		end
-		
 	end
 
 
