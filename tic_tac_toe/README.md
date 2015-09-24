@@ -1,0 +1,1 @@
+This is a quick ruby mock-up of the classic children's game, Tic Tac Toe.
