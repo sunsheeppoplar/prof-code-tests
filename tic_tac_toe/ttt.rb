@@ -36,29 +36,45 @@ class Game
 		end
 	end
 
-	class Computer < Player
-	end
-
 	def get_info
 		puts "Hi, welcome to a simple terminal Tic-Tac-Toe game. Plase choose whether you'd like to be 'x' or 'o,' please."
 		@noughts_or_crosses = gets.chomp.downcase
 		# prohibit non "x" or "o" marker ?
 		@p1 = Player.new("#{@noughts_or_crosses}", "THANKSNILES", "hum")
 		if @p1.marker == "x" ? @p2 = Player.new("o", "botbot", "comp") : @p2 = Player.new("x", "botbot", "comp")
-		puts "Great, thanks for choosing #{@noughts_or_crosses}."
+			puts "Great, thanks for choosing #{@noughts_or_crosses}."
 		end		
 	end
 
 	def make_move(player)
-		if player.type == "hum" 
-			puts "Choose an x and y coordinate, please." 
-			move = gets.chomp.split(", ") 
-			#what if user has improper input?
-			x_coord = move[0].to_i 
-			y_coord = move[1].to_i
-			@board.layout[x_coord][y_coord] = player.marker 
+		prompt = "Choose an x and y coordinate, please."
+		invalid_prompt = "Try again, invalid move!" 
+		if player.type == "hum"
+
+			puts prompt
+
+			while move = gets.chomp.split(", ") do
+				#what if user has improper input?
+				x_coord = move[0].to_i 
+				y_coord = move[1].to_i
+				
+				if x_coord.between?(0, 2) && y_coord.between?(0, 2) && @board.layout[x_coord][y_coord] == ""
+					@board.layout[x_coord][y_coord] = player.marker
+					break
+				else 
+					puts invalid_prompt
+				end
+			end
 		else
-			puts "comp bro"
+			# simulates 'un-smart' computer move
+
+			loop do
+			x_coord = rand(0..2)
+			y_coord = rand(0..2)
+
+			break if @board.layout[x_coord][y_coord] == "" 
+			end
+			@board.layout[x_coord][y_coord] = player.marker
 		end
 	end
 
@@ -66,7 +82,6 @@ class Game
 		@current_turn += 1
 		@current_turn.odd? ? make_move(@p1) : make_move(@p2) 	
 	end
-
 
 end
 
