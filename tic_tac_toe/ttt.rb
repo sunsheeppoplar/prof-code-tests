@@ -1,7 +1,9 @@
 class Board
 	attr_accessor :layout
 	def initialize
-		@layout = Array.new(3) {Array.new(3) {""}}
+		puts "Choose a board size, please."
+		tiles = gets.chomp.to_i
+		@layout = Array.new(tiles) {Array.new(tiles) {""}}
 	end
 end
 
@@ -15,7 +17,6 @@ class Player
 end
 
 class Game
-
 	def initialize
 		@board = Board.new
 		@current_turn = 0
@@ -28,15 +29,27 @@ class Game
 	end
 
 	def play_game
-		while @current_turn < 9 do
-			puts "#{@board.layout}"
+		while @current_turn < @board.layout.length*@board.layout.length do
+			draw_board	
 			next_turn
+			system "clear"
 			end_game?
 		end
-		puts "#{@board.layout}"
+
+		draw_board
 		puts "Hey, looks like y'all are tied!"
 	end
 
+	def draw_board
+		i = 0
+		while i < @board.layout.length do
+
+		puts "#{@board.layout[i]}"
+
+		i += 1
+		end
+	end
+	
 
 	def get_info
 		puts "Hi, welcome to a simple terminal Tic-Tac-Toe game. Plase choose whether you'd like to be 'x' or 'o,' please."
@@ -52,18 +65,17 @@ class Game
 	end
 
 	def make_move(player)
-		prompt = "Choose an x and y coordinate, please."
+		prompt = "Choose an x and y coordinate, please. The format is 'x, y.' For example, '1, 0'"
 		invalid_prompt = "Try again, invalid move!" 
 		if player.type == "hum"
 
 			puts prompt
 
 			while move = gets.chomp.split(", ") do
-				#what if user has improper input?
 				x_coord = move[0].to_i 
 				y_coord = move[1].to_i
 				
-				if x_coord.between?(0, 2) && y_coord.between?(0, 2) && @board.layout[x_coord][y_coord] == ""
+				if x_coord.between?(0, @board.layout.length) && y_coord.between?(0, @board.layout.length) && @board.layout[x_coord][y_coord] == ""
 					@board.layout[x_coord][y_coord] = player.marker
 					break
 				else 
@@ -91,9 +103,7 @@ class Game
 	end
 
 	def check_for_winner(player)
-		 if check_horiz(player) || check_vert(player)
-
-		  # ||check_diag1 || check_diag2
+		 if check_horiz(player) || check_vert(player)|| check_diag1(player) || check_diag2(player)
 			@winner = player.name
 		end
 	end
@@ -107,6 +117,7 @@ class Game
 					g = Game.new
 					g.setup_game
 				else
+					puts "Thanks for playing!"
 					exit
 				end
 		end
@@ -114,7 +125,7 @@ class Game
 
 	def check_horiz(player)
 		i = 0 
-		while i < 3
+		while i < @board.layout.length
 			if @board.layout[i].uniq == [player.marker]
 				return true
 			end
@@ -124,8 +135,8 @@ class Game
 
 	def check_vert(player)
 		i = 0
-		while i < 3
-			v = (0..2).map { |j| @board.layout[j][i] }
+		while i < @board.layout.length
+			v = (0...@board.layout.length).map { |j| @board.layout[j][i] }
 			if v.uniq == [player.marker]
 				return true
 			end
@@ -133,14 +144,21 @@ class Game
 		end
 	end
 
-	def check_diag1
+	def check_diag1(player)
+		d1 = (0...@board.layout.length).map { |i| @board.layout[i][i] }
+		if d1.uniq == [player.marker]
+			return true
+		end
+
 	end
 
-	def check_diag2
+	def check_diag2(player)
+		d1 = (0...@board.layout.length).map { |i| @board.layout[i][@board.layout.length-1-i] }
+		if d1.uniq == [player.marker]
+			return true
+		end
 	end
-
 end
-
 
 g = Game.new
 g.setup_game
