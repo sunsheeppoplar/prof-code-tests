@@ -1,3 +1,19 @@
+class Board
+	attr_accessor :layout
+	def initialize
+		@layout = Array.new(3) {Array.new(3) {""}}
+	end
+end
+
+class Player
+	attr_accessor :marker, :name, :type
+	def initialize(marker, name, type)
+		@marker = marker
+		@name =  name
+		@type = type
+	end
+end
+
 class Game
 
 	def initialize
@@ -109,9 +125,8 @@ class Game
 	def check_vert(player)
 		i = 0
 		while i < 3
-			b = (0..2).map { |j| @board.layout[j][i] }
-			puts "#{b}"
-			if b.uniq == [player.marker]
+			v = (0..2).map { |j| @board.layout[j][i] }
+			if v.uniq == [player.marker]
 				return true
 			end
 		i += 1
@@ -126,21 +141,6 @@ class Game
 
 end
 
-class Board
-	attr_accessor :layout
-	def initialize
-		@layout = Array.new(3) {Array.new(3) {""}}
-	end
-end
-
-class Player
-	attr_accessor :marker, :name, :type
-	def initialize(marker, name, type)
-		@marker = marker
-		@name =  name
-		@type = type
-	end
-end
 
 g = Game.new
 g.setup_game
