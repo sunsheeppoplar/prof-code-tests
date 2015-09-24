@@ -4,6 +4,7 @@ class Game
 	def initialize
 		@board = Board.new
 		@current_turn = 0
+		@winner = nil
 	end
 
 	def setup_game
@@ -15,6 +16,7 @@ class Game
 		while @current_turn < 9 do
 			puts "#{@board.layout}"
 			next_turn
+			end_game?
 		end
 		puts "#{@board.layout}"
 		puts "Hey, looks like y'all are tied!"
@@ -39,10 +41,13 @@ class Game
 	def get_info
 		puts "Hi, welcome to a simple terminal Tic-Tac-Toe game. Plase choose whether you'd like to be 'x' or 'o,' please."
 		@noughts_or_crosses = gets.chomp.downcase
+
+		puts "Please enter your name"
+		@name = gets.chomp.downcase
 		# prohibit non "x" or "o" marker ?
-		@p1 = Player.new("#{@noughts_or_crosses}", "THANKSNILES", "hum")
+		@p1 = Player.new("#{@noughts_or_crosses}", "#{@name}", "hum")
 		if @p1.marker == "x" ? @p2 = Player.new("o", "botbot", "comp") : @p2 = Player.new("x", "botbot", "comp")
-			puts "Great, thanks for choosing #{@noughts_or_crosses}."
+			puts "Great, thanks for choosing #{@noughts_or_crosses}, #{@name}."
 		end		
 	end
 
@@ -75,12 +80,56 @@ class Game
 			break if @board.layout[x_coord][y_coord] == "" 
 			end
 			@board.layout[x_coord][y_coord] = player.marker
+
 		end
+			check_for_winner(player)
 	end
 
 	def next_turn
 		@current_turn += 1
 		@current_turn.odd? ? make_move(@p1) : make_move(@p2) 	
+	end
+
+	def check_for_winner(player)
+		 if check_horiz(player)
+		 # || check_vert ||check_diag1 || check_diag2
+			@winner = player.name
+		end
+	end
+
+	def end_game?
+		if @winner
+			puts "Good job, #{@winner}; you're a real winner!"
+			puts "Do you want to play again? Yes or no?"
+			answer = gets.chomp.downcase
+				if answer == "yes"
+					g = Game.new
+					g.setup_game
+				else
+					exit
+				end
+		end
+	end
+
+	def check_horiz(player)
+		i = 0 
+		while i < 3
+			if @board.layout[i].uniq == [player.marker]
+				return true
+			end
+			i += 1
+		end
+	end
+
+	def check_vert
+		# a = @board.layout.map! {|row| row[0]}
+		# a[0..2]
+	end
+
+	def check_diag1
+	end
+
+	def check_diag2
 	end
 
 end
