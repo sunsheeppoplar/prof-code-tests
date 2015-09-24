@@ -1,6 +1,5 @@
 class Game
 
-
 	def initialize
 		@board = Board.new
 		@current_turn = 0
@@ -22,21 +21,6 @@ class Game
 		puts "Hey, looks like y'all are tied!"
 	end
 
-	class Board
-		attr_accessor :layout
-		def initialize
-			@layout = Array.new(3) {Array.new(3) {""}}
-		end
-	end
-
-	class Player
-		attr_accessor :marker, :name, :type
-		def initialize(marker, name, type)
-			@marker = marker
-			@name =  name
-			@type = type
-		end
-	end
 
 	def get_info
 		puts "Hi, welcome to a simple terminal Tic-Tac-Toe game. Plase choose whether you'd like to be 'x' or 'o,' please."
@@ -91,8 +75,9 @@ class Game
 	end
 
 	def check_for_winner(player)
-		 if check_horiz(player)
-		 # || check_vert ||check_diag1 || check_diag2
+		 if check_horiz(player) || check_vert(player)
+
+		  # ||check_diag1 || check_diag2
 			@winner = player.name
 		end
 	end
@@ -117,13 +102,20 @@ class Game
 			if @board.layout[i].uniq == [player.marker]
 				return true
 			end
-			i += 1
+		i += 1
 		end
 	end
 
-	def check_vert
-		# a = @board.layout.map! {|row| row[0]}
-		# a[0..2]
+	def check_vert(player)
+		i = 0
+		while i < 3
+			b = (0..2).map { |j| @board.layout[j][i] }
+			puts "#{b}"
+			if b.uniq == [player.marker]
+				return true
+			end
+		i += 1
+		end
 	end
 
 	def check_diag1
@@ -134,6 +126,21 @@ class Game
 
 end
 
+class Board
+	attr_accessor :layout
+	def initialize
+		@layout = Array.new(3) {Array.new(3) {""}}
+	end
+end
+
+class Player
+	attr_accessor :marker, :name, :type
+	def initialize(marker, name, type)
+		@marker = marker
+		@name =  name
+		@type = type
+	end
+end
 
 g = Game.new
 g.setup_game
