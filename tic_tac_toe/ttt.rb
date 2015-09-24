@@ -1,7 +1,7 @@
 class Board
 	attr_accessor :layout
 	def initialize
-		puts "Choose a board size, please."
+		puts "Choose a board size, please. For example, '3.'"
 		tiles = gets.chomp.to_i
 		@layout = Array.new(tiles) {Array.new(tiles) {""}}
 	end
@@ -52,7 +52,7 @@ class Game
 	
 
 	def get_info
-		puts "Hi, welcome to a simple terminal Tic-Tac-Toe game. Plase choose whether you'd like to be 'x' or 'o,' please."
+		puts "Hi, welcome to a simple terminal Tic-Tac-Toe game. Please choose whether you'd like to be 'x' or 'o.'"
 		@noughts_or_crosses = gets.chomp.downcase
 
 		puts "Please enter your name"
@@ -73,7 +73,7 @@ class Game
 
 			while move = gets.chomp.split(",") do
 				move.each {|coord| coord.gsub!(/\s+/, "")}
-				
+
 				x_coord = move[0].to_i 
 				y_coord = move[1].to_i
 				
