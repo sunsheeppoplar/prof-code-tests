@@ -3,6 +3,7 @@ class Game
 
 	def initialize
 		@board = Board.new
+		@current_turn = 0
 	end
 
 	def setup_game
@@ -11,8 +12,12 @@ class Game
 	end
 
 	def play_game
+		while @current_turn < 9 do
+			puts "#{@board.layout}"
+			next_turn
+		end
 		puts "#{@board.layout}"
-		make_move(@p1)
+		puts "Hey, looks like y'all are tied!"
 	end
 
 	class Board
@@ -55,6 +60,11 @@ class Game
 		else
 			puts "comp bro"
 		end
+	end
+
+	def next_turn
+		@current_turn += 1
+		@current_turn.odd? ? make_move(@p1) : make_move(@p2) 	
 	end
 
 
