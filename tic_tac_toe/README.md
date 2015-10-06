@@ -1,4 +1,21 @@
-This is a quick ruby mock-up of the classic children's game, Tic Tac Toe.
+This is a quick ruby mock-up of the classic children's game, Tic Tac Toe. You'll need to run this program in terminal. You'll need [Ruby](https://www.ruby-lang.org/en/documentation/installation/) on your machine to play the game.
 
-### To Run
-You'll need to run this in terminal. To clone down, you can choose your preference of SSH or HTTPS on the right side.
+### Instructions
+1. To clone down, run this line in terminal:
+
+```
+$ git clone git@github.com:sunsheeppoplar/prof-code-tests.git
+```
+
+2. Navigate into the the tic_tac_toe folder:
+
+```
+$ cd tic_tac_toe
+```
+
+3. Making sure that you've already installed Ruby on your computer (see above), run the game:
+
+```
+$ ruby ttt.rb
+```
+
