@@ -1,9 +1,7 @@
 /* Trying out BEM CSS principles: https://css-tricks.com/bem-101/ */
 * {
 	box-sizing: border-box;
-
 }
-
 
 body {
 	background-color: white;
@@ -14,23 +12,39 @@ body {
 	text-align: -webkit-center;
 }
 
+/* header */
 .hdr--height {
 	height: 150px;
+}
+
+/* header responsiveness breakpoints */
+@media (max-width: 767px) {
+	.hdr--height {
+		height: 100px;
+	}
+}
+
+@media (max-width: 320px) {
+	.hdr--height {
+		height: 50px;
+	}
 }
 
 .hdr--red {
 	background-color: red;
 }
 
+/* container */
 .ctn--width {
 	max-width: 1200px;
 	font-size: 0;
 }
 
+/* columns */
 .col--dimension {
 	display: inline-block;
-	height: 30px;
 	width: 33.33%;
+	height: 100px;
 }
 
 .col--green {
