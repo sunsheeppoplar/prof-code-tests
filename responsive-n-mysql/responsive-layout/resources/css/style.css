@@ -17,7 +17,7 @@ body {
 	height: 150px;
 }
 
-/* header responsiveness breakpoints */
+/* header breakpoints */
 @media (max-width: 767px) {
 	.hdr--height {
 		height: 100px;
@@ -37,6 +37,7 @@ body {
 /* container */
 .ctn--width {
 	max-width: 1200px;
+	/* way around space between divs because of inline-block */
 	font-size: 0;
 }
 
@@ -44,7 +45,7 @@ body {
 .col--dimension {
 	display: inline-block;
 	width: 33.33%;
-	height: 100px;
+	height: 300px;
 }
 
 .col--green {
@@ -61,4 +62,20 @@ body {
 
 .col--border ~ .col--border {
 	border-left: 5px solid black;
+}
+
+/* footer */
+.ftr--height {
+	height: 100px;
+}
+
+/* footer breakpoints */
+@media (max-width: 768px) {
+	.ftr--height {
+		display: none;
+	}
+}
+
+.ftr--grey {
+	background-color: gray;
 }
