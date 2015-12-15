@@ -4,13 +4,6 @@
 
 }
 
-.hdr--height {
-	height: 150px;
-}
-
-.hdr--red {
-	background-color: red;
-}
 
 body {
 	background-color: white;
@@ -19,6 +12,14 @@ body {
 	/* Mozilla + Chrome centering*/
 	text-align: -moz-center;
 	text-align: -webkit-center;
+}
+
+.hdr--height {
+	height: 150px;
+}
+
+.hdr--red {
+	background-color: red;
 }
 
 .ctn--width {
@@ -42,4 +43,8 @@ body {
 
 .col--blue {
 	background-color: blue;
+}
+
+.col--border ~ .col--border {
+	border-left: 5px solid black;
 }
