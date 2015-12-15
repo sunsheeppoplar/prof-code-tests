@@ -1,0 +1,45 @@
+/* Trying out BEM CSS principles: https://css-tricks.com/bem-101/ */
+* {
+	box-sizing: border-box;
+
+}
+
+.hdr--height {
+	height: 150px;
+}
+
+.hdr--red {
+	background-color: red;
+}
+
+body {
+	background-color: white;
+	/* In order to use inline-block */
+	margin: 0px auto;
+	/* Mozilla + Chrome centering*/
+	text-align: -moz-center;
+	text-align: -webkit-center;
+}
+
+.ctn--width {
+	max-width: 1200px;
+	font-size: 0;
+}
+
+.col--dimension {
+	display: inline-block;
+	height: 30px;
+	width: 33.33%;
+}
+
+.col--green {
+	background-color: green;
+}
+
+.col--white {
+	background-color: white;
+}
+
+.col--blue {
+	background-color: blue;
+}
